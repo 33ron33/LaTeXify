@@ -16,22 +16,43 @@ This Repository will be used to create an **Application** (Mobile-first: iOS & A
 
 # Roadmap
 
-## 1. Environment Setup
-- Install Flutter SDK and Dart.
-- Install Android Studio / VS Code with Flutter & Dart plugins.
-- Set up emulators and device testing.
-- Initialize Git repository for version control.
+## Phase 1: Backend Development (April–Mid May)
 
-## 2. Application Development Plan
+> Focus: Build a robust backend with OCR and ChatGPT LaTeX conversion.
 
-### Phase 1: Mobile App (MVP for iOS & Android)
-- App Initialization and Structure
+### ✅ Goals:
+- Set up Python FastAPI server.
+- Integrate OCR engine (Tesseract for now).
+- Connect OpenAI ChatGPT API to convert raw OCR output to clean LaTeX.
+- Create endpoints:
+  - `/convert/image` → OCR + ChatGPT LaTeX cleanup
+  - `/convert/docx` → DOCX to LaTeX using Pandoc
+  - `/convert/pdf` → PDF to LaTeX via OCR or text extraction
+- Return LaTeX output to be used by frontend.
+
+### 🔍 Testing Plan for Phase 1:
+- Test image-to-LaTeX on:
+  - Printed textbook page
+  - Handwritten math
+  - Mixed text + equations
+- Measure backend accuracy with:
+  - **Equation correctness rate > 90%**
+  - **LaTeX syntax error rate < 5%**
+  - **Processing time < 10s per image**
+- Validate document conversion from:
+  - DOCX files with math equations (Word Equation Editor)
+  - PDFs (scanned + selectable text)
+
+✅ Once accuracy thresholds are met, we move to Phase 2.
+
+---
+
+## Phase 2: Mobile App (MVP for iOS & Android)
+- Flutter App Setup
 - Home Screen:
   - Capture Image (Camera/Gallery)
   - Upload Word/PDF Documents
-- Real-time OCR Processing:
-  - Basic Tesseract/MLKit OCR integration
-  - Mathpix API integration (for premium high-accuracy conversion)
+- Call Backend API endpoints
 - Display LaTeX Output:
   - Editable TextArea for corrections
   - Export Options:
@@ -47,46 +68,14 @@ This Repository will be used to create an **Application** (Mobile-first: iOS & A
 - Analytics and Crash Reporting:
   - Firebase Analytics, Crashlytics integration
 
-### Phase 2: Backend Development
-- Custom Python (FastAPI) backend:
-  - Handle DOCX to LaTeX conversion (Pandoc)
-  - Handle PDF to LaTeX conversion (PyMuPDF + OCR)
-  - Secure API endpoints (Authentication tokens)
-- Deploy backend using Cloud Run or AWS Lightsail
-- (Later) Host Landing Page Website
-
-### Phase 3: Advanced Features (Post-MVP)
-- Real-time LaTeX Preview (MathJax/Katex rendering)
-- Collaborative Features (Share with peers)
-- Project Management (Group images/docs into LaTeX Projects)
-- Equation Editor Toolbar (Insert symbols easily)
-- Direct Overleaf Integration (Stretch Goal)
-- Offline OCR Mode (limited)
-
-
----
-
-# Timeline
-
-| Week | Milestone |
-|:---|:---|
-| Week 1 (Apr 29) | Environment Setup, Wireframes, Project Creation |
-| Week 2-3 (May 6) | Core App Screens (Image Picker, Doc Picker, OCR Integration) |
-| Week 4-5 (May 20) | Backend Setup (DOCX/PDF API), Integrate with App |
-| Week 6 (May 27) | Finalize OCR Logic, Editing Screen, Export Features |
-| Week 7 (June 3) | Firebase Auth, Usage Tracking, Analytics Setup |
-| Week 8 (June 10) | Monetization Integration, Beta Testing (TestFlight, Play Store Internal) |
-| Week 9 (June 17) | App Store Submission, Google Play Submission |
-| Week 10 (June 24) | Launch Publicly |
-
 ---
 
 # Tech Stack
 
-- **Frontend (Mobile App):** Flutter, Dart
-- **Backend:** Python (FastAPI), Pandoc, OCR Engines (Tesseract, Mathpix API)
+- **Backend:** Python, FastAPI, OpenAI ChatGPT API, Tesseract, Pandoc
+- **Frontend:** Flutter (Dart)
 - **Authentication:** Firebase Authentication
-- **Database:** Firestore
+- **Database:** Firestore (Firebase)
 - **Analytics:** Firebase Analytics
 - **Crash Reporting:** Firebase Crashlytics
 - **Deployment:** Firebase Cloud Run / AWS Lightsail
@@ -101,7 +90,22 @@ This Repository will be used to create an **Application** (Mobile-first: iOS & A
   - $29.99/year
 - Premium Features:
   - Unlimited conversions
-  - Higher priority OCR (e.g., Mathpix integration)
+  - Higher priority OCR (e.g., Mathpix or GPT-powered enhancement)
+
+---
+
+# Timeline
+
+| Week | Milestone |
+|:---|:---|
+| Week 1 (Apr 29) | Backend Setup, FastAPI, Tesseract, ChatGPT API integration |
+| Week 2–3 (May) | Test and benchmark OCR + GPT output (accuracy + speed) |
+| Week 4–5 (May 20) | DOCX + PDF endpoints, finalize backend |
+| Week 6 (May 27) | Start frontend Flutter integration |
+| Week 7 (June 3) | Finalize frontend + backend connection |
+| Week 8 (June 10) | Add monetization, test flows |
+| Week 9 (June 17) | Publish to App Stores |
+| Week 10 (June 24) | Launch LaTeXify 🚀 |
 
 ---
 
